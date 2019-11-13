@@ -6,6 +6,9 @@ const Application = function() {
   this.update({ name: 'A', frequency: 440, octave: 4, value: 69, cents: 0 })
 }
 
+var _time= new Date;
+var _D_time= 0;
+
 Application.prototype.start = function() {
   const self = this
 
@@ -16,6 +19,10 @@ Application.prototype.start = function() {
         TUNER= this.tuner;
         self.update(note)
       } else {
+				var old_time= _time;
+				_time= new Date;
+				_D_time= _time.getTime() - old_time.getTime();
+				console.log('DELTA TIME', _D_time);
         self.lastNote = note.name
       }
     }
