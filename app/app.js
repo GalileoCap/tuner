@@ -8,6 +8,16 @@ const Application = function() {
 
 var _time= new Date;
 var _D_time= 0;
+var _last_note;
+var _sheet_data= [];
+
+function keep_time(lastNote) {
+	var old_time= _time;
+	_time= new Date;
+	_D_time= _time.getTime() - old_time.getTime();
+	_sheet_data.push([lastNote, _D_time])
+	console.log('DELTA TIME', _D_time);
+}
 
 Application.prototype.start = function() {
   const self = this
@@ -19,10 +29,7 @@ Application.prototype.start = function() {
         TUNER= this.tuner;
         self.update(note)
       } else {
-				var old_time= _time;
-				_time= new Date;
-				_D_time= _time.getTime() - old_time.getTime();
-				console.log('DELTA TIME', _D_time);
+				keep_time(self.lastNote);
         self.lastNote = note.name
       }
     }
