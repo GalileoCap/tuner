@@ -12,7 +12,7 @@ Application.prototype.start = function() {
   this.tuner.onNoteDetected = function(note) {
     if (self.notes.isAutoMode) {
       if (self.lastNote === note.name) {
-        console.log('NOTE', note.name);
+        console.log('NOTE', note.name, note.octave);
         TUNER= this.tuner;
         self.update(note)
       } else {
