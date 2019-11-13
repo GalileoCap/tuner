@@ -15,7 +15,9 @@ function keep_time(lastNote) {
 	var old_time= _time;
 	_time= new Date;
 	_D_time= _time.getTime() - old_time.getTime();
-	_sheet_data.push([lastNote, _D_time])
+	if (_D_time > 900) { //TMP Just to test in 60bpm
+		_sheet_data.push([lastNote, _D_time]);
+	}
 	console.log('DELTA TIME', _D_time);
 }
 
